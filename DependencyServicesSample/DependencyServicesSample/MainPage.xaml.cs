@@ -4,33 +4,33 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DependencyServicesSample.Interfaces;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace DependencyServicesSample
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : ContentPage
     {
         public MainPage()
         {
             InitializeComponent();
-            var stack = new StackLayout();
-
-            // Text-to-Speech
-            var speak = new Button
+            Item1.Clicked += async (sender, e) =>
             {
-                Text = "Hello, Forms !",
-                VerticalOptions = LayoutOptions.CenterAndExpand,
-                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                await Navigation.PushAsync(new TxtMessage());
             };
-            speak.Clicked += (sender, e) =>
+            Item2.Clicked += async (sender, e) =>
             {
-                DependencyService.Get<ITextToSpeech>().Speak("Hello from Xamarin Forms");
+                await Navigation.PushAsync(new TextToSpeechDemo());
             };
-            stack.Children.Add(speak);
-
-            Content = speak;
+            Item3.Clicked += async (sender, e) =>
+            {
+                await Navigation.PushAsync(new BatteryDemo());
+            };
+            Item4.Clicked += async (sender, e) =>
+            {
+                await Navigation.PushAsync(new QRCodeScanner());
+            };
         }
     }
 }

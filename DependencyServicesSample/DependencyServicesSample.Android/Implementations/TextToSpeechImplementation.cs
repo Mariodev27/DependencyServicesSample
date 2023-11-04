@@ -11,6 +11,7 @@ using System.Text;
 using Android.Speech.Tts;
 using Xamarin.Forms;
 using DependencyServicesSample.Droid;
+using DependencyServicesSample.Interfaces;
 
 [assembly: Dependency(typeof(TextToSpeechImplementation))]
 namespace DependencyServicesSample.Droid
@@ -19,6 +20,7 @@ namespace DependencyServicesSample.Droid
     {
         TextToSpeech speaker;
         string toSpeak;
+
         public void Speak(string text)
         {
             toSpeak = text;
@@ -32,6 +34,7 @@ namespace DependencyServicesSample.Droid
                 speaker.Speak(toSpeak, QueueMode.Flush, null, null);
             }
         }
+
         #region IOnInitListener implementation
         public void OnInit(OperationResult status)
         {
@@ -42,5 +45,4 @@ namespace DependencyServicesSample.Droid
         }
         #endregion
     }
-
 }

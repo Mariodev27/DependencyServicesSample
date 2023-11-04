@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DependencyServicesSample
+namespace DependencyServicesSample.Interfaces
 {
     public interface ITextToSpeech
     {
